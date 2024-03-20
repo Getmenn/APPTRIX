@@ -1,8 +1,10 @@
 import { createReduxStore } from '@/app/providers/reduxStore/config/createReduxStore';
 import { TestSchema } from '@/entities/auth/model/types/slice';
+import { UserSchema } from '@/entities/user/model/types/slice';
 
 interface RootState {
     testReducer: TestSchema;
+    userReducer: UserSchema;
 }
 // interface AsyncState {
 // }

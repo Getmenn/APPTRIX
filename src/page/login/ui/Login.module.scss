@@ -1,0 +1,12 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .button{
+        padding: 5px 45px;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+}
