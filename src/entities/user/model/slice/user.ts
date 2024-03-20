@@ -3,15 +3,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserSchema } from '../types/slice';
 
 const initialState: UserSchema = {
-    user: '',
+    userName: null,
+    email: null,
 };
 
 const slice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<string >) => {
-            state.user = action.payload;
+        setUserName: (state, action: PayloadAction<string | null>) => {
+            state.userName = action.payload;
+        },
+        setEmail: (state, action: PayloadAction<string | null>) => {
+            state.email = action.payload;
         },
     },
 });

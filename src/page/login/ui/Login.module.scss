@@ -1,12 +1,14 @@
 .login{
     display: flex;
+    flex-direction: column;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     height: 100vh;
 
-    .button{
-        padding: 5px 45px;
-        font-size: 20px;
-        border-radius: 5px;
+    .error{
+        color: var(--red);
     }
 }
+
+      

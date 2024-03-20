@@ -1,33 +1,13 @@
 :root{
     // === txt ===
-    --txt-red: #bf403e;
-    --txt-yellow: #c4b200;
-    --txt-gray: #3e3e3e;
-    --txt-gray-second: #676767;
-    --txt-gray-light: #a7a7a7;
-    --txt-green:#377927;
-    --txt-black: #000;
-    --txt-white: #fff;
-    --txt-blue: #274f79;
-    --txt-blue-dark: #001574;
-    --txt-blue-dark-hover: #021ec4;
-
-    // === bg ===
-    --bg-gray:#4e4e4e;
-    --bg-gray-opacity: rgba(219 219 219 68%);
-    --bg-gray-light:#bababa;;
-    --bg-red: #9e3432;
-    --bg-green:#2b5e1f;
-    --bg-black: #000;
-    --bg-white: #fff;
-    --bg-yellow: #c4b200;
-    --bg-overlay: rgba(0 0 0 / 60%);
-
-    // === link ===
-    --link-color:#001fa8;
+    --light-blue: #b8cfff;
+    --light-blue-hover: #adc7ff;
+    --light-blue-gray:#e2eaff;
+    --blue: #6b78ff;
+    --red: #ff7f7f;
 
     // === size ===
-    --header-height: 50px;
+    --header-height: 100px;
 
     // === z-index ===
     --z-index-alert: 100;

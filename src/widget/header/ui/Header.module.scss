@@ -1,0 +1,45 @@
+.header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    .basket{
+        height: 50px;
+        width: 50px;
+    }
+
+    .rightSide{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .info{
+            background: var(--light-blue-gray);
+            padding: 5px 10px;
+            border-radius: 5px ;
+            display: grid;
+            grid-template-columns: repeat(2, 0.5fr);
+            grid-template-rows: repeat(2, 0.5fr);
+            align-items: flex-start;
+            gap: 10px;
+
+            .photo{
+                height: 50px;
+                width: 50px;
+                border: 1px solid black;
+                border-radius: 50%;
+                grid-row: 1 / 3;
+            }
+
+            span{
+                font-size: 16px;
+            }
+        }
+    }
+}

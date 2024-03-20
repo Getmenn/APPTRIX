@@ -1,3 +1,4 @@
 export interface UserSchema {
-    user: string;
+    userName: string | null;
+    email: string | null;
 }

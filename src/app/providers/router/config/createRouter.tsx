@@ -2,7 +2,9 @@ import { Navigate } from 'react-router-dom';
 
 import { LoginPage } from '@/page/login';
 import { MainPage } from '@/page/main';
+import { OrderPage } from '@/page/order/ui/OrderPage';
 import { PAGES } from '@/shared/constants';
+import { Header } from '@/widget/header';
 
 export const createRouter = () => [
     {
@@ -11,10 +13,21 @@ export const createRouter = () => [
         errorElement: <Navigate to={PAGES.baseURL} />,
     },
     {
-        path: PAGES.main,
-        element: <MainPage />,
-        errorElement: <Navigate to={PAGES.baseURL} />,
+        element: <Header />,
+        children: [
+            {
+                path: PAGES.main,
+                element: <MainPage />,
+                errorElement: <Navigate to={PAGES.baseURL} />,
+            },
+            {
+                path: PAGES.order,
+                element: <OrderPage />,
+                errorElement: <Navigate to={PAGES.order} />,
+            },
+        ],
     },
+
     // {
     //     path: PAGES.error.error404,
     //     element: <Error404Page />,
