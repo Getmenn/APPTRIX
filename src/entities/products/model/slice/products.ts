@@ -17,6 +17,9 @@ const slice = createSlice({
         addCheck: (state, action: PayloadAction<ICheck>) => {
             state.checks = [...state.checks, action.payload];
         },
+        setChecks: (state, action: PayloadAction<ICheck[]>) => {
+            state.checks = action.payload;
+        },
     },
 });
 

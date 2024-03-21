@@ -1,0 +1,21 @@
+.sliderWrapper{
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .slider{
+        height: 400px;
+    }
+}
+
+.arrow{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+
+    &.prev{
+        transform: rotate(180deg);
+        right: unset;
+        left: 0;
+    }
+}

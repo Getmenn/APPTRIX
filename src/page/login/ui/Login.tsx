@@ -16,7 +16,9 @@ export const LoginPage = () => {
     const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-        if (user) {
+        if (user && window.history.state && window.history.state.idx > 0) {
+            navigate(-1);
+        } else {
             navigate(PAGES.main);
         }
     }, [navigate, user]);
@@ -31,6 +33,9 @@ export const LoginPage = () => {
             <Loader />
         );
     }
+
+    console.log(error, user);
+    
 
     return (
         <div className={s.login}>

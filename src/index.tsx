@@ -1,5 +1,7 @@
 import '@/app/styles/index.scss';
 import './shared/lib/i18n/i18n';
+// import 'swiper/css';
+
 
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
