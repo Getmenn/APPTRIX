@@ -31,6 +31,7 @@ export function buildPlugins(options: BuildOptions): WebpackPluginInstance[] {
             patterns: [
                 // { from: paths.favicon, to: paths.build },
                 { from: paths.assets, to: paths.buildAssets },
+                { from: paths.locales, to: paths.buildLocales },
             ],
         }),
         new HotModuleReplacementPlugin(),

@@ -3,6 +3,12 @@
    align-items: center;
    justify-content: center;
    height: 100vh;
+
+   .products{
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+   }
 }
 
 

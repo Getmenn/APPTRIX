@@ -3,54 +3,44 @@ import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import { auth } from '@/app/providers/firebase/db';
-import { emailSelector, userActions, userNameSelector } from '@/entities/user';
 import BasketSvg from '@/shared/assets/svg/basket.svg';
+import HomeSvg from '@/shared/assets/svg/home.svg';
 import { PAGES } from '@/shared/constants';
-import { useActions } from '@/shared/hooks/useAction/useAction';
-import { useAppSelector } from '@/shared/hooks/useAppSelector';
-import { Button } from '@/shared/ui';
+import { auth } from '@/shared/lib/firebase/db';
+import { Button, LangSwitcher } from '@/shared/ui';
 
 import s from './Header.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
+    const { t } = useTranslation()
     const navigate = useNavigate();
     const location = useLocation();
-    const userName = useAppSelector(userNameSelector);
-    const email = useAppSelector(emailSelector);
-    const { setUserName, setEmail } = useActions(userActions);
     const [user] = useAuthState(auth);
-    console.log(user, 'user');
 
     useEffect(() => {
-        if (!userName) {
-            const localUsername = localStorage.getItem('username');
-            localUsername && setUserName(JSON.parse(localUsername));
+        if (!user) {
+            navigate('/');
         }
-        if (!userName) {
-            const localEmail = localStorage.getItem('email');
-            localEmail && setEmail(JSON.parse(localEmail));
-        }
-    }, []);
-
-    if (!user) {
-        navigate('/');
-    }
+    }, [navigate, user]);
 
     return (
         <>
             <header className={s.header}>
-                {location.pathname === PAGES.main
-                    ? (
-                        <Button icon onClick={() => navigate(PAGES.order)}>
-                            <BasketSvg className={s.basket} />
-                        </Button>
-                    )
-                    : (
-                        <Button onClick={() => navigate(PAGES.main)}>
-                            Главная
-                        </Button>
-                    )}
+                <nav className={s.leftSide}>
+                    {location.pathname === PAGES.main
+                        ? (
+                            <Button view='icon' onClick={() => navigate(PAGES.order)}>
+                                <BasketSvg className={s.icon} />
+                            </Button>
+                        )
+                        : (
+                            <Button view='icon' onClick={() => navigate(PAGES.main)}>
+                                <HomeSvg className={s.icon} />
+                            </Button>
+                        )}
+                    <LangSwitcher />
+                </nav>
                 <div className={s.rightSide}>
                     <div className={s.info}>
                         <img
@@ -59,16 +49,16 @@ export const Header = () => {
                             className={s.photo}
                         />
                         <span>
-                            Имя:
-                            {userName}
+                            {t('Имя')}
+                            {user?.displayName}
                         </span>
                         <span>
-                            Почта:
-                            {email}
+                            {t('Почта')}
+                            {user?.email}
                         </span>
                     </div>
                     <Button onClick={() => signOut(auth)}>
-                        Выход
+                        {t('Выход')}
                     </Button>
                 </div>
             </header>

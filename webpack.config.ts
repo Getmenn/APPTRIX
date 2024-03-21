@@ -21,6 +21,8 @@ export default (env: BuildEnv) => {
         src: path.resolve(__dirname, 'src'),
         // favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
         assets: path.resolve(__dirname, 'src', 'shared', 'assets'),
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
     return buildWebpackConfig({

@@ -1,0 +1,31 @@
+.card {
+    width: clamp(200px, 10.41vw, 300px);
+    height: clamp(300px, 14.83vw, 400px);
+    padding: 10px 15px;
+    background: #b7c8ff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .image {
+        width: 100%;
+    }
+
+    .info {
+        margin-top: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buy {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+}
+
+

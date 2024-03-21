@@ -1,20 +1,25 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { auth } from '@/app/providers/firebase/db';
-import { userActions } from '@/entities/user';
 import { PAGES } from '@/shared/constants';
-import { useActions } from '@/shared/hooks/useAction/useAction';
+import { auth } from '@/shared/lib/firebase/db';
 import { Button, Loader } from '@/shared/ui';
 
 import s from './Login.module.scss';
 
 export const LoginPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [user, loading, error] = useAuthState(auth);
+
+    useEffect(() => {
+        if (user) {
+            navigate(PAGES.main);
+        }
+    }, [navigate, user]);
 
     const login = () => {
         const provider = new GoogleAuthProvider();
@@ -27,18 +32,14 @@ export const LoginPage = () => {
         );
     }
 
-    if (user) {
-        navigate(PAGES.main);
-    }
-
     return (
         <div className={s.login}>
             <Button onClick={login}>
-                Войти
+                {t('Войти')}
             </Button>
             {error && (
                 <span className={s.error}>
-                    Ошибка авторизации
+                    {t('Ошибка авторизации')}
                 </span>
             )}
         </div>

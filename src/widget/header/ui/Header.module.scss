@@ -9,16 +9,18 @@
     align-items: center;
     padding: 0 15px;
 
-    .basket{
+    .icon{
         height: 50px;
         width: 50px;
     }
-
-    .rightSide{
+    
+    .leftSide, .rightSide{
         display: flex;
         gap: 20px;
         align-items: center;
+    }
 
+    .rightSide{
         .info{
             background: var(--light-blue-gray);
             padding: 5px 10px;

@@ -1,8 +1,8 @@
 import { createReduxStore } from '@/app/providers/reduxStore/config/createReduxStore';
-import { UserSchema } from '@/entities/user/model/types/slice';
+import { ProductsSchema } from '@/entities/products';
 
 interface RootState {
-    userReducer: UserSchema;
+    productsReducer: ProductsSchema;
 }
 // interface AsyncState {
 // }
