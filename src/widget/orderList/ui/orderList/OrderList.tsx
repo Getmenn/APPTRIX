@@ -8,6 +8,8 @@ import { ICheck } from '@/entities/products/model/types/slice';
 import { checksSelector } from '@/entities/products/model/selectors/productsSelectors';
 import { collection, getDocs } from 'firebase/firestore';
 import { OrderItem } from '../orderItem/OrderItem';
+import s from './OrderList.module.scss'
+import { OrderForm } from '../orderForm/OrderForm';
 
 export interface IProductsCount extends IProduct {
     count: number
@@ -62,10 +64,11 @@ export const OrderList = () => {
 
 
     return (
-        <div>
+        <div className={s.orderList}>
             {checkList.map(el => (
                 <OrderItem key={el.id} item={el}  />
             ))}
+            <OrderForm />
         </div>
     )
 }

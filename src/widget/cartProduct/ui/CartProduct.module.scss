@@ -2,7 +2,7 @@
     width: clamp(200px, 10.41vw, 300px);
     height: clamp(300px, 14.83vw, 400px);
     padding: 10px 15px;
-    background: #b7c8ff;
+    background: var(--light-blue);;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
