@@ -1,0 +1,22 @@
+.checkList{
+    display: flex;
+    background: var(--light-blue);
+
+    .listWrapper{
+        display: flex;
+        flex-direction: column;
+        width: 1000px;
+        height: 550px;
+        overflow-x: auto;
+        background: var(--light-blue);
+        gap: 10px;
+        border: 1px solid var(--gray);
+
+        .empty{
+            margin: auto;
+            text-align: center;
+            font-weight: 600;
+            font-size: 22px;
+        }
+    }
+}

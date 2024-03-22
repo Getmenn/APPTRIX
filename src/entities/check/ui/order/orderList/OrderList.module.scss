@@ -1,0 +1,22 @@
+.orderWrapper{
+    width: 100%;
+    padding: 30px;
+    background: var(--light-blue);
+
+    h2{
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
+
+    .orderList {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        background: var(--light-blue-gray);
+    }
+}
+

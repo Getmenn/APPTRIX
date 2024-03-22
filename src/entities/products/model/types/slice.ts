@@ -10,14 +10,8 @@ export interface IProduct{
     image: string;
 }
 
-export interface ICheck{
-    id: string;
-    count: number;
-}
-
 export interface ProductsSchema {
     products: IProduct[];
-    checks: ICheck[];
 }
 
 

@@ -26,7 +26,7 @@ module.exports = {
       2,
       {
         // Набор разрешенных расширений
-        extensions: [".js", ".jsx", ".tsx"],
+        extensions: [".js", ".jsx", ".tsx", ".ts"],
       },
     ],
     "react/function-component-definition": "off", // отключает правило ESLint, которое проверяет определение функциональных компонентов в React

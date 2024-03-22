@@ -1,8 +1,10 @@
 .mainPage {
    display: flex;
-   align-items: center;
-   justify-content: center;
+   padding-top: var(--header-height); //!!
    height: 100vh;
+   flex-direction: column;
+   max-width: 1000px;
+   margin: 0 auto;
 }
 
 

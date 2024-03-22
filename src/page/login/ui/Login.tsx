@@ -1,5 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -18,24 +18,21 @@ export const LoginPage = () => {
     useEffect(() => {
         if (user && window.history.state && window.history.state.idx > 0) {
             navigate(-1);
-        } else {
+        } else if (user) {
             navigate(PAGES.main);
         }
     }, [navigate, user]);
 
-    const login = () => {
+    const login = useCallback(() => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider);
-    };
+    }, []);
 
     if (loading) {
         return (
             <Loader />
         );
     }
-
-    console.log(error, user);
-    
 
     return (
         <div className={s.login}>

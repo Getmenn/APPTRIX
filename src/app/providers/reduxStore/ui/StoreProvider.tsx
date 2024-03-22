@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import { createReduxStore } from '../config/createReduxStore';
 import { productsReducer } from '@/entities/products';
+import { checkReducer } from '@/entities/check';
 
 export const StoreProvider = ({
     children,
@@ -12,6 +13,7 @@ export const StoreProvider = ({
 }) => {
     const rootReducers: ReducersMapObject<StateSchema> = {
         productsReducer,
+        checkReducer,
     };
 
     const store = useMemo(() => createReduxStore<StateSchema>(rootReducers), []);

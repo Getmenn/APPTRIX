@@ -1,0 +1,1 @@
+export { getOrders } from "./controller/getOrders";

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo } from "react";
 import s from "./InputPlusMinus.module.scss"
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
     setValue: (value: number) => void;
 }
 
-export const InputPlusMinus = ({ value, setValue }: IProps) => {
+export const InputPlusMinus = memo(({ value, setValue }: IProps) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const isNumber = /^\d+$/.test(e.target.value)
@@ -44,4 +44,4 @@ export const InputPlusMinus = ({ value, setValue }: IProps) => {
             </button>
         </div>
     )
-}
+})

@@ -1,8 +1,10 @@
 import { createReduxStore } from '@/app/providers/reduxStore/config/createReduxStore';
+import { CheckSchema } from '@/entities/check';
 import { ProductsSchema } from '@/entities/products';
 
 interface RootState {
     productsReducer: ProductsSchema;
+    checkReducer: CheckSchema;
 }
 // interface AsyncState {
 // }

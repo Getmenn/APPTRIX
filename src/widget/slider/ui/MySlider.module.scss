@@ -1,6 +1,13 @@
 .sliderWrapper{
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 30px;
+    background: var(--light-blue);
+
+    h2 {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
 
     .slider{
         height: 400px;
@@ -12,6 +19,11 @@
     right: 0;
     bottom: 0;
     z-index: 100;
+    background: var(--gray-300);
+
+    &:hover{
+        background: var(--gray-200);
+    }
 
     &.prev{
         transform: rotate(180deg);

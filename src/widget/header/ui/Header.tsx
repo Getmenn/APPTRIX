@@ -1,46 +1,21 @@
 import { signOut } from 'firebase/auth';
-import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import BasketSvg from '@/shared/assets/svg/basket.svg';
 import HomeSvg from '@/shared/assets/svg/home.svg';
 import { PAGES } from '@/shared/constants';
-import { auth, db } from '@/shared/lib/firebase/db';
+import { auth } from '@/shared/lib/firebase/db';
 import { Button, LangSwitcher } from '@/shared/ui';
 
 import s from './Header.module.scss';
 import { useTranslation } from 'react-i18next';
-import { collection, getDocs } from 'firebase/firestore';
-import { useActions } from '@/shared/hooks/useAction/useAction';
-import { IProduct, productsActions, productsSelector } from '@/entities/products';
-import { useAppSelector } from '@/shared/hooks/useAppSelector';
 
 export const Header = () => {
     const { t } = useTranslation()
     const navigate = useNavigate();
     const location = useLocation();
-    const [user, loading] = useAuthState(auth);
-    const menuColection = collection(db, 'menu');
-    const { addProduct } = useActions(productsActions)
-    const products = useAppSelector(productsSelector)
-
-    useEffect(() => {
-        if (!user && !loading) {
-            navigate('/');
-        }
-    }, [navigate, user, loading]);
-
-    const getProducts = async () => {
-        const docSnap = await getDocs(menuColection);
-        docSnap.forEach((doc) => {
-            addProduct({ ...doc.data(), id: doc.id } as IProduct)
-        });
-    };
-
-    useEffect(() => {
-        products.length === 0 && getProducts();
-    }, [products]);
+    const [user] = useAuthState(auth);
 
     return (
         <>
@@ -80,8 +55,6 @@ export const Header = () => {
                     </Button>
                 </div>
             </header>
-
-            <Outlet />
         </>
     );
 };

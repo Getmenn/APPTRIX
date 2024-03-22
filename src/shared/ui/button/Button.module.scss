@@ -26,4 +26,25 @@
             opacity: 0.9;
         }
     }
+
+    &.disabled{
+        background: var(--gray-100);
+        color: black;
+    }
+
+    &.delete{
+        background: var(--red);
+        border-radius: 50%;
+        max-height: unset;
+        height: 30px;
+        width: 30px;
+        justify-content: center;
+        align-items: center;
+        padding: unset;
+    
+        &:hover {
+            opacity: 0.8;
+            background: var(--red);
+        }
+    }
 }

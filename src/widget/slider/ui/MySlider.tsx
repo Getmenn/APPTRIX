@@ -6,20 +6,25 @@ import { addDoc, collection } from "firebase/firestore";
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import s from "./MySlider.module.scss"
 import { ButtonNavigate } from "./ButtonNavigate";
+import { useTranslation } from "react-i18next";
 
 export const MySlider = () => {
     const products = useAppSelector(productsSelector)
     const checkColection = collection(db, 'check');
+    const { t } = useTranslation()
 
     const handleAddProduct = async (id: string, count: number) => {
         await addDoc(checkColection, {
             id,
             count
         });
+
+        alert(t('Заказ добавлен в корзину'))
     }
-    
+
     return (
         <div className={s.sliderWrapper}>
+            <h2>{t('Блюда')}</h2>
             <Swiper
                 spaceBetween={1}
                 slidesPerView={3}

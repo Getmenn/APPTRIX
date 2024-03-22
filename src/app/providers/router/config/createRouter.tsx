@@ -4,26 +4,26 @@ import { LoginPage } from '@/page/login';
 import { MainPage } from '@/page/main';
 import { OrderPage } from '@/page/order/ui/OrderPage';
 import { PAGES } from '@/shared/constants';
-import { Header } from '@/widget/header';
+import { AppWrapper } from '@/page/wrapper';
 
 export const createRouter = () => [
     {
         path: PAGES.baseURL,
         element: <LoginPage />,
-        errorElement: <Navigate to={PAGES.baseURL} />,
+        // errorElement: <Navigate to={PAGES.baseURL} />,
     },
     {
-        element: <Header />,
+        element: <AppWrapper />,
         children: [
             {
                 path: PAGES.main,
                 element: <MainPage />,
-                errorElement: <Navigate to={PAGES.baseURL} />,
+                // errorElement: <Navigate to={PAGES.baseURL} />,
             },
             {
                 path: PAGES.order,
                 element: <OrderPage />,
-                errorElement: <Navigate to={PAGES.order} />,
+                // errorElement: <Navigate to={PAGES.order} />,
             },
         ],
     },
