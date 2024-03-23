@@ -1,12 +1,16 @@
 .checkList{
     display: flex;
     background: var(--light-blue);
+    max-width: 1000px;
+    width: 100%;
+    // padding: 10px 0;
+    margin: 10px auto;
 
     .listWrapper{
         display: flex;
         flex-direction: column;
-        width: 1000px;
-        height: 550px;
+        width: 100%;
+        height: clamp(400px, 31.64vw, 550px);
         overflow-x: auto;
         background: var(--light-blue);
         gap: 10px;
@@ -18,5 +22,11 @@
             font-weight: 600;
             font-size: 22px;
         }
+    }
+
+    @media (max-width: 800px){
+        margin: 0;
+        flex-direction: column;
+        padding: 10px;
     }
 }

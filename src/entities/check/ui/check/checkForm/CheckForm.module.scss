@@ -10,5 +10,19 @@
         padding: 5px 8px;
         font-size: 18px;
     }
+
+    .sum{
+        font-size: 18px;
+    }
+
+    @media (max-width: 800px) {
+        margin: 0 auto;
+        max-width: 400px;
+        border: unset;
+
+        .field {
+            max-width: 400px;
+        }
+    }
 } 
 

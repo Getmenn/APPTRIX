@@ -5,6 +5,7 @@
     border-radius: 5px;
     grid-template-columns: 180px 1fr 150px 30px;
     align-items: center;
+    cursor: pointer;
 
     .delete{
         background: var(--red);
@@ -25,6 +26,8 @@
         flex-direction: column;
         gap: 10px;
         grid-column: 2 / 5;
+        margin-top: 10px;
+        min-width: 238px;
 
         .product{
             padding: 5px;
@@ -36,4 +39,21 @@
             }
         }
     } 
+
+    @media (max-width: 500px ){
+        grid-template-columns: 180px 1fr 30px;
+
+        &:has(.productsList){
+            width: fit-content;
+        }
+
+        .sum {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .delete {
+            grid-column: 3;
+            grid-row: 1;
+        }
+    }
 }

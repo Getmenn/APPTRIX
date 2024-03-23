@@ -7,8 +7,8 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: string | ReactNode
     onClick?: () => void;
     className?: string;
-    view?: "second" | "icon" | 'delete';
-    type?: "button" | 'submit' | 'reset';
+    view?: 'second' | 'icon' | 'delete';
+    type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
 }
 
@@ -17,20 +17,19 @@ export const Button = memo(({
     onClick,
     className,
     view,
-    type = "button",
+    type = 'button',
     disabled = false,
     ...otherProps
 }: IProps) => {
-
     const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-        e.stopPropagation()
-        onClick?.()
-    }
+        e.stopPropagation();
+        onClick?.();
+    };
 
     return (
         <button
             type={type}
-            onClick={e => handleClick(e)}
+            onClick={(e) => handleClick(e)}
             className={classNames(s.button, view && s[view], { [s.disabled]: disabled }, className)}
             disabled={disabled}
             {...otherProps}

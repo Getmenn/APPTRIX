@@ -1,1 +1,1 @@
-export { getOrders } from "./controller/getOrders";
+export { getOrdersT } from './controller/getOrdersT';

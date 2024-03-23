@@ -1,0 +1,1 @@
+export { getCheckT } from "./controller/getCheckT";

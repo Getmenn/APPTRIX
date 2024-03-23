@@ -1,0 +1,33 @@
+.header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+
+    .icon{
+        height: 50px;
+        width: 50px;
+    }
+    
+    .leftSide, .rightSide{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .rightSide{
+        position: relative;
+    }
+
+    @media (max-width: 850px){
+        .icon{
+            height: 25px;
+            width: 25px;
+        }
+    }
+}

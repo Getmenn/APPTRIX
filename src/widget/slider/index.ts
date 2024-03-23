@@ -1,1 +1,1 @@
-export { MySlider } from "./ui/MySlider";
+export { MySlider } from './ui/mySlider/MySlider';

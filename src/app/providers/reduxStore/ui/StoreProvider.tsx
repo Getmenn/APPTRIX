@@ -2,9 +2,10 @@ import { ReducersMapObject } from '@reduxjs/toolkit';
 import { ReactNode, useMemo } from 'react';
 import { Provider } from 'react-redux';
 
-import { createReduxStore } from '../config/createReduxStore';
-import { productsReducer } from '@/entities/products';
 import { checkReducer } from '@/entities/check';
+import { productsReducer } from '@/entities/products';
+
+import { createReduxStore } from '../config/createReduxStore';
 
 export const StoreProvider = ({
     children,

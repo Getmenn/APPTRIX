@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICheck, CheckSchema, IProductsCount, IOrder } from '../types/slice';
+import { CheckSchema, ICheck, IOrder, IProductsCount } from '../types/slice';
 
 const initialState: CheckSchema = {
     checks: [],
@@ -25,35 +25,36 @@ const slice = createSlice({
         // сумма в чеке
         setCheckSum: (state, action: PayloadAction<string>) => {
             state.checkSum = action.payload;
-        }, 
-        
+        },
+
         // список чеков
         setCheckList: (state, action: PayloadAction<IProductsCount[]>) => {
             state.checkList = action.payload;
         },
-        uppdateCountCheck: (state, action: PayloadAction<IProductsCount>) => {
-            state.checkList = state.checkList.map(el => {
-                if(el.id === action.payload.id){
-                    return {...el, count: action.payload.count}
-                }else{
-                    return el
-                }
-            })
+        deleteCheckListItem: (state, action: PayloadAction<string>) => {
+            state.checkList = state.checkList.filter((el) => el.id !== action.payload);
         },
-        loadingCheckList: (state, action: PayloadAction<boolean>) => {
+        uppdateCountCheck: (state, action: PayloadAction<IProductsCount>) => {
+            state.checkList = state.checkList.map((el) => {
+                if (el.id === action.payload.id) {
+                    return { ...el, count: action.payload.count };
+                }
+                return el;
+            });
+        },
+        setLoadingCheckList: (state, action: PayloadAction<boolean>) => {
             state.loadingCheckList = action.payload;
         },
 
-
-        //orders
+        // заказы на главной странице
         addOrder: (state, action: PayloadAction<IOrder>) => {
             state.orders = [...state.orders, action.payload];
         },
-        clearOrder: (state, ) => {
+        clearOrder: (state) => {
             state.orders = [];
         },
         deleteOrder: (state, action: PayloadAction<string>) => {
-            state.orders = state.orders.filter(el => el.id !== action.payload);
+            state.orders = state.orders.filter((el) => el.id !== action.payload);
         },
     },
 });

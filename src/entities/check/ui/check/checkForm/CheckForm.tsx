@@ -1,60 +1,63 @@
-import { useTranslation } from 'react-i18next'
-import s from './CheckForm.module.scss'
-import { FormEvent, useState } from 'react'
-import { Button } from '@/shared/ui'
-import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
-import { db } from '@/shared/lib/firebase/db'
-import { useAppSelector } from '@/shared/hooks/useAppSelector'
-import { checkListSelector, checkSumSelector } from '../../../model/selectors/checkSelectors'
-import { useActions } from '@/shared/hooks/useAction/useAction'
-import { checkActions } from '../../../model/slice/check'
+import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
+import { FormEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { useActions } from '@/shared/hooks/useAction/useAction';
+import { useAppSelector } from '@/shared/hooks/useAppSelector';
+import { db } from '@/shared/lib/firebase/db';
+import { Button } from '@/shared/ui';
+
+import { checkListSelector, checksSelector, checkSumSelector } from '../../../model/selectors/checkSelectors';
+import { checkActions } from '../../../model/slice/check';
+import s from './CheckForm.module.scss';
 
 type codePay = '1' | '2'
 
 const typePayment = {
-    "1": "Cash",
-    "2": "Card",
-}
+    1: 'Cash',
+    2: 'Card',
+};
 
 export const CheckForm = () => {
-    const [addres, setAddres] = useState<string>('')
-    const [typePay, setTypePay] = useState<codePay>('1')
-    const checkList = useAppSelector(checkListSelector)
-    const checkSum = useAppSelector(checkSumSelector)
-    const { setCheckList, loadingCheckList, addOrder, clearOrder } = useActions(checkActions)
-    const { t } = useTranslation()
-
+    const [addres, setAddres] = useState<string>('');
+    const [typePay, setTypePay] = useState<codePay>('1');
+    const checkList = useAppSelector(checkListSelector);
+    const checks = useAppSelector(checksSelector);
+    const checkSum = useAppSelector(checkSumSelector);
+    const { setCheckList, setLoadingCheckList, clearOrder, setCheckSum } = useActions(checkActions);
+    const { t } = useTranslation();
     const ordersColection = collection(db, 'orders');
-    const checkColection = collection(db, 'check');
 
     const handleSendCheck = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        setCheckList([]) // удаление товаров из чека
+        setCheckList([]); // удаление товаров из чека
 
-        loadingCheckList(true);
+        setLoadingCheckList(true);
 
-        const checkSnap = await getDocs(checkColection);
-        checkSnap.forEach(async (check) => { // удаление товаров из чека
-            await deleteDoc(doc(db, 'check', check.id))
-        });
+        try {
+            checks.forEach(async (check) => { // удаление товаров из чека
+                await deleteDoc(doc(db, 'check', check.idCheck));
+            });
+    
+            await addDoc(ordersColection, { // добавление заказа
+                products: checkList,
+                addres,
+                typePay: typePayment[typePay],
+            });
+        } catch (error) {
+            console.log('error');
+        }
+        
+        clearOrder(); // очистка списка заказов
+        setCheckSum('0')
+        setLoadingCheckList(false);
 
-        await addDoc(ordersColection, { // добавление заказа
-            products: checkList,
-            addres,
-            typePay: typePayment[typePay],
-            sum: checkSum
-        });
-
-        clearOrder() // очистка списка заказов
-
-        loadingCheckList(false)
-
-        alert(t('Заказ успешно сформирован'))
-    }
+        alert(t('Заказ успешно сформирован'));
+    };
 
     return (
-        <form onSubmit={e => handleSendCheck(e)} className={s.form}>
+        <form onSubmit={(e) => handleSendCheck(e)} className={s.form}>
             <input
                 type="text"
                 placeholder={t('Адрес доставки')}
@@ -71,12 +74,18 @@ export const CheckForm = () => {
                 <option value="1">{t('Наличные')}</option>
                 <option value="2">{t('Карта')}</option>
             </select>
-            <div className={s.sum}>
-                <span>{t("Сумма")} {checkSum}</span>
-            </div>
-            <Button type='submit' view='second' disabled={Boolean(!checkList.length)}>
+            <span className={s.sum}>
+                {t('Сумма')}
+                {' '}
+                {checkSum}
+            </span>
+            <Button
+                type="submit"
+                view="second"
+                disabled={Boolean(!checkList.length)}
+            >
                 {t('Заказать')}
             </Button>
         </form>
-    )
-}
+    );
+};

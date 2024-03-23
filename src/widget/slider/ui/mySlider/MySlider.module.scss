@@ -1,0 +1,31 @@
+.sliderWrapper{
+    width: 100%;
+    padding: 30px;
+    background: var(--light-blue);
+    min-height: 400px;
+
+    .error{
+        text-align: center;
+        font-size: 24px;
+        color: var(--red);
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
+
+    .slider{
+        height: 400px;
+    }
+
+    @media (max-width: 600px) {
+        padding: 20px 10px;
+        
+        .slider{
+            height: 700px;
+        }
+        
+    }
+}

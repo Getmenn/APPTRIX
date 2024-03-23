@@ -18,5 +18,9 @@
         padding: 10px;
         background: var(--light-blue-gray);
     }
+
+    @media (max-width: 600px){
+        padding: 20px 10px 10px 10px;
+    }
 }
 

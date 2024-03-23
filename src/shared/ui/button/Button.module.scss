@@ -4,6 +4,7 @@
     border-radius: 5px;
     background: var(--light-blue);
     max-height: 40px;
+    max-width: 400px;
 
     &:hover{
         background: var(--light-blue-hover);
@@ -46,5 +47,10 @@
             opacity: 0.8;
             background: var(--red);
         }
+    }
+
+    @media (max-width: 500px){
+        padding: 5px 10px;
+        font-size: 14px;
     }
 }

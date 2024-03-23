@@ -1,16 +1,17 @@
 import { Navigate } from 'react-router-dom';
 
+import { ErrorPage, UndefinedPage } from '@/page/error';
 import { LoginPage } from '@/page/login';
 import { MainPage } from '@/page/main';
-import { OrderPage } from '@/page/order/ui/OrderPage';
-import { PAGES } from '@/shared/constants';
+import { OrderPage } from '@/page/order';
 import { AppWrapper } from '@/page/wrapper';
+import { PAGES } from '@/shared/constants';
 
 export const createRouter = () => [
     {
         path: PAGES.baseURL,
         element: <LoginPage />,
-        // errorElement: <Navigate to={PAGES.baseURL} />,
+        errorElement: <Navigate to={PAGES.error} />,
     },
     {
         element: <AppWrapper />,
@@ -18,24 +19,21 @@ export const createRouter = () => [
             {
                 path: PAGES.main,
                 element: <MainPage />,
-                // errorElement: <Navigate to={PAGES.baseURL} />,
+                errorElement: <Navigate to={PAGES.error} />,
             },
             {
                 path: PAGES.order,
                 element: <OrderPage />,
-                // errorElement: <Navigate to={PAGES.order} />,
+                errorElement: <Navigate to={PAGES.error} />,
             },
         ],
     },
-
-    // {
-    //     path: PAGES.error.error404,
-    //     element: <Error404Page />,
-    //     errorElement: <Navigate to={PAGES.error.error404} />,
-    // },
-    // {
-    //     path: '*',
-    //     element: <Error404Page />,
-    //     errorElement: <Navigate to={PAGES.error.error404} />,
-    // },
+    {
+        path: PAGES.error,
+        element: <ErrorPage />,
+    },
+    {
+        path: '*',
+        element: <UndefinedPage />,
+    },
 ];

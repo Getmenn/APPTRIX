@@ -1,8 +1,9 @@
-import { IProduct } from "@/entities/products";
+import { IProduct } from '@/entities/products';
 
 export interface ICheck{
     id: string;
     count: number;
+    idCheck: string;
 }
 
 export interface IProductsCount extends IProduct {
@@ -13,8 +14,7 @@ export interface IOrder{
     id: string;
     addres: string;
     products: IProductsCount[];
-    typePay: "Cash" | "Card";
-    sum: string;
+    typePay: 'Cash' | 'Card';
 }
 
 export interface CheckSchema {
@@ -24,5 +24,3 @@ export interface CheckSchema {
     orders: IOrder[];
     checkSum: string;
 }
-
-

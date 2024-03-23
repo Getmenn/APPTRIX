@@ -4,6 +4,8 @@ import { IProduct, ProductsSchema } from '../types/slice';
 
 const initialState: ProductsSchema = {
     products: [],
+    productsLoading: false,
+    productsError: false,
 };
 
 const slice = createSlice({
@@ -12,6 +14,12 @@ const slice = createSlice({
     reducers: {
         addProduct: (state, action: PayloadAction<IProduct>) => {
             state.products = [...state.products, action.payload];
+        },
+        setProductLoading: (state, action: PayloadAction<boolean>) => {
+            state.productsLoading = action.payload;
+        },
+        setProductsError: (state, action: PayloadAction<boolean>) => {
+            state.productsError = action.payload;
         },
     },
 });
